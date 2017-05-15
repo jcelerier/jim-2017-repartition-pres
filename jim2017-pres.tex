@@ -1,0 +1,245 @@
+\documentclass[draft,handout]{beamer}
+
+\usepackage{polyglossia}
+\setdefaultlanguage{french}
+
+\setmainfont{Tribun ADF Std}
+\setsansfont{Tribun ADF Std}
+\setmonofont{Fira Code}
+
+\usepackage{soul}
+\usepackage{microtype}
+\usepackage{csquotes}
+\usepackage{default}
+\usepackage{hyperref}
+\hypersetup{colorlinks=true}
+\usetheme{simple}
+\usepackage{graphicx}
+\usepackage[justification=centering]{caption}
+\usepackage{subcaption}
+\usepackage{listings}
+\usepackage{pstricks}
+\captionsetup[subfigure]{labelformat=empty}
+\captionsetup[figure]{labelformat=empty}
+\setbeamertemplate{caption}{\raggedright\insertcaption\par}
+\setbeamerfont{frametitle}{size=\LARGE}
+\newfontfamily\DejaSans{DejaVu Sans}
+\setbeamerfont{title}{family=\texttt,size=\huge}
+\usepackage[scale=2]{ccicons}
+\newfontfamily\unicodefun[Ligatures=TeX]{Symbola}
+\newfontfamily\unicodefun{Droid Sans}
+
+
+\lstdefinelanguage{JavaScript}{
+    keywords={typeof, new, true, false, catch, function, return, null, catch, switch, var, if, in, while, do, else, case, break},
+    keywordstyle=\color{blue}\bfseries,
+    ndkeywords={class, export, boolean, throw, implements, import, this},
+    ndkeywordstyle=\color{darkgray}\bfseries,
+    identifierstyle=\color{black},
+    sensitive=false,
+    comment=[l]{//},
+    morecomment=[s]{/*}{*/},
+    commentstyle=\color{purple}\ttfamily,
+    stringstyle=\color{red}\ttfamily,
+    morestring=[b]',
+    morestring=[b]"
+}
+
+\lstset{
+    language=JavaScript,
+    extendedchars=true,
+    basicstyle=\footnotesize\ttfamily,
+    showstringspaces=false,
+    showspaces=false,
+    numberstyle=\footnotesize,
+    numbersep=9pt,
+    tabsize=2,
+    breaklines=true,
+    showtabs=false,
+    captionpos=b
+}
+
+\title{Exécution répartie de partitions interactives}
+\subtitle{}
+\date{}
+\author{Jean-Michaël Celerier$\mathsf{^{1,2}}$~\\ Myriam Desainte-Catherine$\mathsf{^{2}}$~\\ Jean-Michel Couturier$\mathsf{^{1}}$}
+\institute{1. Blue Yeti --- 2. SCRIME / LaBRI}
+\titlegraphic{
+    \includegraphics[width=0.2\textwidth]{images/logobl.png} \vspace{1cm}
+    \includegraphics[width=0.5\textwidth]{images/scrime.jpg}}
+\usepackage{tikz}
+
+\newsavebox{\codebox}% For storing listings
+\begin{document}
+\maketitle
+\begin{frame}
+    \tableofcontents
+\end{frame}
+
+\section{Introduction}
+\begin{frame}
+    \frametitle{Problématique}
+    \Large
+\end{frame}
+
+\begin{frame}
+    \frametitle{Quarrè}
+    \Large
+\end{frame}
+
+\begin{frame}
+    \frametitle{Existant}
+    \begin{itemize}
+        \item Synchronisation d'horloge
+        \item Serveurs de son
+        \item Écriture répartie
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Rappel d'i-score}
+\end{frame}
+
+\section{Répartition}
+
+
+\subsection{Groupes}
+\begin{frame}
+\frametitle{Groupes}
+{\Large Comment assurer l'indépendance vis-à-vis du matériel lors de l'écriture ?}
+\end{frame}
+
+
+\subsection{Répartition des contenus}
+\begin{frame}
+\frametitle{Répartition des contenus}
+{\Large Pour un agencement de structures temporelles donné, quelles sont les exécutions pouvant être définies ?}
+
+\begin{itemize}
+    \item Libre: chaque machine exécute indépendamment.
+    \item Partagée: les temporalités sont identiques, les contenus changent.
+    \item Mixte: Les temporalités sont identiques au sein d'un groupe.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Exécution libre}
+\begin{figure}
+    \centering
+    \begin{tikzpicture}
+    \input{scores/free-1.tex}
+    \end{tikzpicture}
+    \caption{Notation}
+\end{figure}
+\begin{figure}
+    \centering
+    \begin{tikzpicture}
+    \input{scores/free-2.tex}
+    \end{tikzpicture}
+    \caption{Déroulement sur la machine 1}
+\end{figure}
+\begin{figure}
+    \centering
+    \begin{tikzpicture}
+    \input{scores/free-3.tex}
+    \end{tikzpicture}
+    \caption{Déroulement sur la machine 2}
+\end{figure}
+\end{frame}
+\begin{frame}
+\frametitle{Exécution partagée}
+\begin{figure}
+    \centering
+    \begin{tikzpicture}
+    \input{scores/shared-1.tex}
+    \end{tikzpicture}
+    \caption{Notation}
+\end{figure}
+\begin{figure}
+    \centering
+    \begin{tikzpicture}
+    \input{scores/shared-2.tex}
+    \end{tikzpicture}
+    \caption{Déroulement sur la machine 1}
+\end{figure}
+\begin{figure}
+    \centering
+    \begin{tikzpicture}
+    \input{scores/shared-3.tex}
+    \end{tikzpicture}
+    \caption{Déroulement sur la machine 2}
+\end{figure}
+\end{frame}
+\begin{frame}
+\frametitle{Exécution mixte}
+\end{frame}
+
+\subsection{Synchronisation}
+\begin{frame}
+\frametitle{Synchronisation}
+\end{frame}
+
+\begin{frame}
+\frametitle{Compensation de latence}
+\end{frame}
+
+\begin{frame}
+\frametitle{Consensus et interaction}
+\end{frame}
+
+\section{Lien avec les objets d'i-score}
+\begin{frame}
+\frametitle{Lien avec les objets d'i-score}
+* Point d'interaction
+* Condition
+* Vitesse d'exécution
+\end{frame}
+
+\section{Conclusion}
+\begin{frame}
+    \frametitle{Conclusion}  
+    \Large
+    \begin{itemize}
+        \item<1> tata
+        \item<2> tutu
+        \item<3> toto
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[allowframebreaks]%in case more than 1 slide needed
+    
+    %remove the icon
+    \setbeamertemplate{bibliography item}{}
+    
+    %remove line breaks
+    \setbeamertemplate{bibliography entry title}{}
+    \setbeamertemplate{bibliography entry location}{}
+    \setbeamertemplate{bibliography entry note}{}
+    
+    {\footnotesize
+        \nocite{*}
+        \bibliographystyle{IEEEtran}
+        \bibliography{icmc2016}
+    }
+\end{frame}
+
+\begin{frame}
+    \frametitle{Liens} 
+    \Large
+    \begin{itemize}
+        \setlength\itemsep{1em}
+        \item \textbf{i-score} : \url{www.i-score.org}
+    \end{itemize}
+        
+    \centering
+    \vspace{2em}
+    \Large{Merci ! Des questions ?}
+    \vspace{2em}
+    
+    \small{Remerciements : Serge Chaumette, Pierre Cochard}
+    
+    \vspace{1em}
+    
+    \tiny{Utilise le thème Beamer 'simple' theme de (Facundo Muñoz) ainsi que les fontes Fira de Mozilla}
+\end{frame}
+\end{document}
