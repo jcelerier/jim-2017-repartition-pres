@@ -1,4 +1,4 @@
-\documentclass[draft,handout]{beamer}
+\documentclass[]{beamer}
 
 \usepackage{polyglossia}
 \setdefaultlanguage{french}
@@ -19,6 +19,7 @@
 \usepackage{subcaption}
 \usepackage{listings}
 \usepackage{pstricks}
+\usepackage{booktabs}
 \captionsetup[subfigure]{labelformat=empty}
 \captionsetup[figure]{labelformat=empty}
 \setbeamertemplate{caption}{\raggedright\insertcaption\par}
@@ -83,9 +84,32 @@
 \end{frame}
 
 \begin{frame}
-    \frametitle{Quarrè}
     \Large
+    \begin{figure}
+    	\centering
+    	\includegraphics[width=0.9\textwidth]{images/quarre.jpg}
+    	\caption{Quarrè (© Pierre Cochard)}
+    \end{figure}
 \end{frame}
+
+\begin{frame}
+\Large
+\begin{figure}
+	\centering
+	\includegraphics[width=0.9\textwidth]{images/quarre-2.jpg}
+	\caption{Quarrè (© Pierre Cochard)}
+\end{figure}
+\end{frame}
+
+\begin{frame}
+\Large
+\begin{figure}
+	\centering
+	\includegraphics[width=0.9\textwidth]{images/quarre-3.jpg}
+	\caption{Quarrè (© Pierre Cochard)}
+\end{figure}
+\end{frame}
+
 
 \begin{frame}
     \frametitle{Existant}
@@ -106,7 +130,12 @@
 \subsection{Groupes}
 \begin{frame}
 \frametitle{Groupes}
-{\Large Comment assurer l'indépendance vis-à-vis du matériel lors de l'écriture ?}
+{\Large Assurer l'indépendance vis-à-vis du matériel lors de l'écriture.}
+\begin{figure}
+	\centering
+	\includegraphics[width=0.6\textwidth]{images/groupes.eps}
+	\caption{Notation}
+\end{figure}
 \end{frame}
 
 
@@ -116,11 +145,23 @@
 {\Large Pour un agencement de structures temporelles donné, quelles sont les exécutions pouvant être définies ?}
 
 \begin{itemize}
-    \item Libre: chaque machine exécute indépendamment.
-    \item Partagée: les temporalités sont identiques, les contenus changent.
-    \item Mixte: Les temporalités sont identiques au sein d'un groupe.
+    \item<1> Libre: chaque machine exécute indépendamment.
+    \item<1> Partagée: les temporalités sont identiques, les contenus changent.
+    \item<1> Mixte: Les temporalités sont identiques au sein d'un groupe.
 \end{itemize}
 \end{frame}
+
+\section{Synchronisation des interactions}
+\begin{frame}
+\frametitle{Interactions possibles}
+\Large
+\begin{itemize}
+	\item<1> Points d'interaction
+	\item<2> Conditions
+	\item<3> Contrôle de la vitesse d'exécution 
+\end{itemize}
+\end{frame}
+
 
 \begin{frame}
 \frametitle{Exécution libre}
@@ -177,32 +218,90 @@
 \subsection{Synchronisation}
 \begin{frame}
 \frametitle{Synchronisation}
+\Large
+Plusieurs aspects : 
+\large
+\begin{itemize}
+	\item \textbf{Latence} : délai des interactions.
+	\item \textbf{Simultanéité} : la fin de $A$ concorde avec le début de $B$.
+	\item Respect de l'\textbf{ordre des opérations} de la partition.
+\end{itemize}
+~\\
+\Large Quatres modes : 
+\large
+\begin{table}
+	\begin{tabular}{c|c}
+	Synchrone compensé & Synchrone non-compensé \\
+	\midrule
+	Asynchrone compensé & Asynchrone non-compensé
+	\end{tabular}
+\end{table}
+
 \end{frame}
 
 \begin{frame}
 \frametitle{Compensation de latence}
+\begin{figure}
+	\centering
+	\includegraphics[width=\textwidth]{draw/noncompensated.eps}
+	\caption{Pas de compensation de latence}
+\end{figure}
 \end{frame}
 
 \begin{frame}
-\frametitle{Consensus et interaction}
+\frametitle{Compensation de latence}
+\begin{figure}
+	\centering
+	\includegraphics[width=\textwidth]{draw/compensated.eps}
+	\caption{Compensation de latence}
+\end{figure}
 \end{frame}
 
-\section{Lien avec les objets d'i-score}
 \begin{frame}
-\frametitle{Lien avec les objets d'i-score}
-* Point d'interaction
-* Condition
-* Vitesse d'exécution
+\frametitle{Ordonnancement}
+\centering
+\Large
+\begin{figure}
+\begin{tikzpicture}[scale=2]
+\input{scenarios/deplacement-interactif-source.tex}
+\end{tikzpicture}
+\caption{Un scénario réparti sur quatre groupes}
+\end{figure}
 \end{frame}
+
+\begin{frame}
+\frametitle{Ordonnancement}
+\centering
+\large
+\begin{figure}
+	\begin{tikzpicture}[scale=1.1]
+	\input{scenarios/deplacement-interactif-async.tex}
+	\end{tikzpicture}
+	\caption{Cas asynchrone: l'ordre n'est pas nécessairement respecté}
+\end{figure}
+\end{frame}
+
+\begin{frame}
+\frametitle{Ordonnancement}
+\centering
+\large
+\begin{figure}
+\begin{tikzpicture}[scale=1.1]
+\input{scenarios/deplacement-interactif-sync.tex}
+\end{tikzpicture}
+\caption{Cas synchrone: l'ordre est respecté}
+\end{figure}
+\end{frame}
+
 
 \section{Conclusion}
 \begin{frame}
     \frametitle{Conclusion}  
     \Large
     \begin{itemize}
-        \item<1> tata
-        \item<2> tutu
-        \item<3> toto
+        \item<1> 
+        \item<2> 
+        \item<3> 
     \end{itemize}
 \end{frame}
 
@@ -228,7 +327,8 @@
     \Large
     \begin{itemize}
         \setlength\itemsep{1em}
-        \item \textbf{i-score} : \url{www.i-score.org}
+        \item \textbf{i-score} :~\\ {\small \url{www.i-score.org} }
+        \item \textbf{Add-on réseau} :~\\ {\small \url{github.com/OSSIA/iscore-addon-network} }
     \end{itemize}
         
     \centering
@@ -240,6 +340,6 @@
     
     \vspace{1em}
     
-    \tiny{Utilise le thème Beamer 'simple' theme de (Facundo Muñoz) ainsi que les fontes Fira de Mozilla}
+    \tiny{Utilise le thème Beamer 'simple' theme de Facundo Muñoz ainsi que les fontes Fira et ADF}
 \end{frame}
 \end{document}

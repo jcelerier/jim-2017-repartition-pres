@@ -1,0 +1,61 @@
+%% Creator: Inkscape inkscape 0.92.1, www.inkscape.org
+%% PDF/EPS/PS + LaTeX output extension by Johan Engelen, 2010
+%% Accompanies image file 'iscore-example.eps' (pdf, eps, ps)
+%%
+%% To include the image in your LaTeX document, write
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics{<filename>.pdf}
+%% To scale the image, write
+%%   \def\svgwidth{<desired width>}
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics[width=<desired width>]{<filename>.pdf}
+%%
+%% Images with a different path to the parent latex file can
+%% be accessed with the `import' package (which may need to be
+%% installed) using
+%%   \usepackage{import}
+%% in the preamble, and then including the image with
+%%   \import{<path to file>}{<filename>.pdf_tex}
+%% Alternatively, one can specify
+%%   \graphicspath{{<path to file>/}}
+%% 
+%% For more information, please see info/svg-inkscape on CTAN:
+%%   http://tug.ctan.org/tex-archive/info/svg-inkscape
+%%
+\begingroup%
+  \makeatletter%
+  \providecommand\color[2][]{%
+    \errmessage{(Inkscape) Color is used for the text in Inkscape, but the package 'color.sty' is not loaded}%
+    \renewcommand\color[2][]{}%
+  }%
+  \providecommand\transparent[1]{%
+    \errmessage{(Inkscape) Transparency is used (non-zero) for the text in Inkscape, but the package 'transparent.sty' is not loaded}%
+    \renewcommand\transparent[1]{}%
+  }%
+  \providecommand\rotatebox[2]{#2}%
+  \ifx\svgwidth\undefined%
+    \setlength{\unitlength}{276.79999644bp}%
+    \ifx\svgscale\undefined%
+      \relax%
+    \else%
+      \setlength{\unitlength}{\unitlength * \real{\svgscale}}%
+    \fi%
+  \else%
+    \setlength{\unitlength}{\svgwidth}%
+  \fi%
+  \global\let\svgwidth\undefined%
+  \global\let\svgscale\undefined%
+  \makeatother%
+  \begin{picture}(1,0.78947858)%
+    \put(0,0){\includegraphics[width=\unitlength]{iscore-example.eps}}%
+    \put(0.10767603,0.0005927){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{Time flow direction}}}%
+    \put(0.10790888,0.30221973){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{Interactive trigger }}}%
+    \put(0.1549194,0.20575156){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{ }}}%
+    \put(0.14958919,0.2225923){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{State}}}%
+    \put(0.20974939,0.39848299){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{Conditional}}}%
+    \put(0.36554781,0.1510093){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{Synchronization (Time Node)}}}%
+    \put(0.37761372,0.07265995){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{Span of time (Time Constraint)}}}%
+  \end{picture}%
+\endgroup%
