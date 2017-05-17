@@ -26,9 +26,9 @@
 \setbeamerfont{frametitle}{size=\LARGE}
 \newfontfamily\DejaSans{DejaVu Sans}
 \setbeamerfont{title}{family=\texttt,size=\huge}
-\usepackage[scale=2]{ccicons}
-\newfontfamily\unicodefun[Ligatures=TeX]{Symbola}
-\newfontfamily\unicodefun{Droid Sans}
+%\usepackage[scale=2]{ccicons}
+%\newfontfamily\unicodefun[Ligatures=TeX]{Symbola}
+%\newfontfamily\unicodefun{Droid Sans}
 
 
 \lstdefinelanguage{JavaScript}{
@@ -81,6 +81,10 @@
 \begin{frame}
     \frametitle{Problématique}
     \Large
+    \begin{itemize}
+        \item Jouer A  sur les machines 1 et 2, B sur la machine 3.
+        \item 
+    \end{itemize}
 \end{frame}
 
 \begin{frame}
@@ -113,28 +117,37 @@
 
 \begin{frame}
     \frametitle{Existant}
+    \Large
     \begin{itemize}
-        \item Synchronisation d'horloge
-        \item Serveurs de son
-        \item Écriture répartie
+        \item Synchronisation d'horloge: NTP, PTP\dots
+        \item Serveurs de son: NetJack
+        \item Écriture et jeu répartis: OhmStudio, Kiwi
     \end{itemize}
 \end{frame}
 
 \begin{frame}
 \frametitle{Rappel d'i-score}
+\begin{figure}
+    \includegraphics[width=0.8\textwidth]{scenarios/iscore-example.eps}
+\end{figure}
 \end{frame}
 
 \section{Répartition}
-
+\begin{frame}
+\frametitle{Approche}
+\begin{itemize}
+    \item Séparation de l'écoulement du temps et de l'exécution des contenus.
+\end{itemize}
+\end{frame}
 
 \subsection{Groupes}
 \begin{frame}
 \frametitle{Groupes}
-{\Large Assurer l'indépendance vis-à-vis du matériel lors de l'écriture.}
+{\Large Assurer l'indépendance vis-à-vis du matériel lors de l'écriture d'une partition.}
 \begin{figure}
 	\centering
 	\includegraphics[width=0.6\textwidth]{images/groupes.eps}
-	\caption{Notation}
+	\caption{Groupes}
 \end{figure}
 \end{frame}
 
@@ -145,9 +158,9 @@
 {\Large Pour un agencement de structures temporelles donné, quelles sont les exécutions pouvant être définies ?}
 
 \begin{itemize}
-    \item<1> Libre: chaque machine exécute indépendamment.
-    \item<1> Partagée: les temporalités sont identiques, les contenus changent.
-    \item<1> Mixte: Les temporalités sont identiques au sein d'un groupe.
+    \item<1> \textbf{Libre} : chaque machine exécute indépendamment.
+    \item<1> \textbf{Partagée} : les temporalités sont identiques, les contenus changent.
+    \item<1> \textbf{Mixte} : Les temporalités sont identiques au sein d'un groupe.
 \end{itemize}
 \end{frame}
 
@@ -227,7 +240,7 @@ Plusieurs aspects :
 	\item Respect de l'\textbf{ordre des opérations} de la partition.
 \end{itemize}
 ~\\
-\Large Quatres modes : 
+\Large Quatres modes pour les points d'interaction : 
 \large
 \begin{table}
 	\begin{tabular}{c|c}
@@ -293,15 +306,23 @@ Plusieurs aspects :
 \end{figure}
 \end{frame}
 
-
+\section{Implémentation}
+\begin{frame}
+\frametitle{Implémentation: utilisation dans i-score}
+\end{frame}
 \section{Conclusion}
 \begin{frame}
     \frametitle{Conclusion}  
     \Large
     \begin{itemize}
-        \item<1> 
-        \item<2> 
-        \item<3> 
+        \item<1> Mécanisme de répartition des partitions écrites avec i-score.
+    \end{itemize}
+
+    Objectifs:
+    \begin{itemize}
+        \item<1> À court terme : permettre à une machine de rejoindre une exécution en cours de route.
+        \item<2> À long terme : édition et exécution répartie en temps réel à plusieurs.
+        \item<3> Intégration avec Ableton Link pour une précision plus élevée pour des scénarios audio.
     \end{itemize}
 \end{frame}
 
