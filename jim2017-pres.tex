@@ -1,4 +1,4 @@
-\documentclass[]{beamer}
+\documentclass[handout]{beamer}
 
 \usepackage{polyglossia}
 \setdefaultlanguage{french}
@@ -26,6 +26,8 @@
 \setbeamerfont{frametitle}{size=\LARGE}
 \newfontfamily\DejaSans{DejaVu Sans}
 \setbeamerfont{title}{family=\texttt,size=\huge}
+\usepackage[backend=biber]{biblatex}
+\addbibresource{biblio.bib}
 %\usepackage[scale=2]{ccicons}
 %\newfontfamily\unicodefun[Ligatures=TeX]{Symbola}
 %\newfontfamily\unicodefun{Droid Sans}
@@ -60,7 +62,7 @@
     captionpos=b
 }
 
-\title{Exécution répartie de partitions interactives}
+\title{Exécution répartie~\\de partitions interactives}
 \subtitle{}
 \date{}
 \author{Jean-Michaël Celerier$\mathsf{^{1,2}}$~\\ Myriam Desainte-Catherine$\mathsf{^{2}}$~\\ Jean-Michel Couturier$\mathsf{^{1}}$}
@@ -81,10 +83,9 @@
 \begin{frame}
     \frametitle{Problématique}
     \Large
-    \begin{itemize}
-        \item Jouer A  sur les machines 1 et 2, B sur la machine 3.
-        \item 
-    \end{itemize}
+    
+    \centering
+    \includegraphics[width=0.8\textwidth]{draw/groupes-ex.png}
 \end{frame}
 
 \begin{frame}
@@ -119,9 +120,12 @@
     \frametitle{Existant}
     \Large
     \begin{itemize}
-        \item Synchronisation d'horloge: NTP, PTP\dots
-        \item Serveurs de son: NetJack
-        \item Écriture et jeu répartis: OhmStudio, Kiwi
+        \item \textbf{Horloges}: physiques, logiques, hybrides\cite{lamport1978time,kulkarni2014logical}.
+        \item \textbf{Synchronisation d'horloge}: NTP, PTP\cite{mills1991internet,peng2009research}\dots
+        \item \textbf{Serveurs de son}: NetJack\cite{carot2009netjack}\dots
+        \item \textbf{Synchronisation de tempo}: Ableton Link, Oscthulhu, Global Metronome.\cite{oda2016global}\dots
+        \item \textbf{Improvisation}: eJamming\cite{carot2007networked}\dots
+        \item \textbf{Écriture répartie}: OhmStudio, Kiwi\dots
     \end{itemize}
 \end{frame}
 
@@ -133,10 +137,34 @@
 \end{frame}
 
 \section{Répartition}
+
 \begin{frame}
-\frametitle{Approche}
+\frametitle{Actuellement}
+\Large
+\begin{figure}
+    \vspace{-1cm}
+    \includegraphics[width=0.75\textwidth]{draw/current.png}
+\end{figure}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Objectif}
+\Large
+\begin{figure}
+    \vspace{-1cm}
+    \includegraphics[width=0.75\textwidth]{draw/objective.png}
+\end{figure}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Principe}
+\Large
 \begin{itemize}
     \item Séparation de l'écoulement du temps et de l'exécution des contenus.
+    ~\\ { \normalsize \textit{Problème: dans i-score, le temps est un contenu!} }
+    \item Annotations de répartition fournies par le compositeur.
 \end{itemize}
 \end{frame}
 
@@ -147,7 +175,6 @@
 \begin{figure}
 	\centering
 	\includegraphics[width=0.6\textwidth]{images/groupes.eps}
-	\caption{Groupes}
 \end{figure}
 \end{frame}
 
@@ -156,17 +183,17 @@
 \begin{frame}
 \frametitle{Répartition des contenus}
 {\Large Pour un agencement de structures temporelles donné, quelles sont les exécutions pouvant être définies ?}
-
+\large
 \begin{itemize}
-    \item<1> \textbf{Libre} : chaque machine exécute indépendamment.
-    \item<1> \textbf{Partagée} : les temporalités sont identiques, les contenus changent.
-    \item<1> \textbf{Mixte} : Les temporalités sont identiques au sein d'un groupe.
+    \item<1> \textbf{Libre}~\\Chaque machine exécute indépendamment.
+    \item<2> \textbf{Partagée}~\\Les temporalités sont identiques, les contenus changent.
+    \item<3> \textbf{Mixte}~\\Les temporalités sont identiques au sein d'un groupe.
 \end{itemize}
 \end{frame}
 
 \section{Synchronisation des interactions}
 \begin{frame}
-\frametitle{Interactions possibles}
+\frametitle{Interactions possibles à l'exécution}
 \Large
 \begin{itemize}
 	\item<1> Points d'interaction
@@ -232,7 +259,7 @@
 \begin{frame}
 \frametitle{Synchronisation}
 \Large
-Plusieurs aspects : 
+Aspects à considérer : 
 \large
 \begin{itemize}
 	\item \textbf{Latence} : délai des interactions.
@@ -278,7 +305,7 @@ Plusieurs aspects :
 \begin{tikzpicture}[scale=2]
 \input{scenarios/deplacement-interactif-source.tex}
 \end{tikzpicture}
-\caption{Un scénario réparti sur quatre groupes}
+\caption{Un scénario à répartir sur quatre groupes}
 \end{figure}
 \end{frame}
 
@@ -306,10 +333,38 @@ Plusieurs aspects :
 \end{figure}
 \end{frame}
 
-\section{Implémentation}
+\section{Utilisation}
 \begin{frame}
-\frametitle{Implémentation: utilisation dans i-score}
+\frametitle{Utilisation dans i-score}
+\centering
+\includegraphics[width=\textwidth]{images/score.png}
 \end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Embarquement d'i-score}
+Actuellement : 
+\begin{itemize}
+    \item Objet PureData: objet \lstinline|[i-score]|.
+    \item API QML:
+    \begin{lstlisting}
+Item {
+  Ossia.Player {
+    port: 4567
+    score: "documents/my_score.scorejson"
+    Component.onCompleted: play()
+  }
+}
+    \end{lstlisting}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\Huge
+\centering
+Démonstration
+\end{frame}
+
+
 \section{Conclusion}
 \begin{frame}
     \frametitle{Conclusion}  
@@ -321,7 +376,7 @@ Plusieurs aspects :
     Objectifs:
     \begin{itemize}
         \item<1> À court terme : permettre à une machine de rejoindre une exécution en cours de route.
-        \item<2> À long terme : édition et exécution répartie en temps réel à plusieurs.
+        \item<2> À long terme : édition répartie intégrée dans la boucle d'interaction.
         \item<3> Intégration avec Ableton Link pour une précision plus élevée pour des scénarios audio.
     \end{itemize}
 \end{frame}
@@ -336,10 +391,11 @@ Plusieurs aspects :
     \setbeamertemplate{bibliography entry location}{}
     \setbeamertemplate{bibliography entry note}{}
     
-    {\footnotesize
+    {\scriptsize
         \nocite{*}
-        \bibliographystyle{IEEEtran}
-        \bibliography{icmc2016}
+        \printbibliography
+        %\bibliographystyle{IEEEtran}
+        %\bibliography{icmc2016}
     }
 \end{frame}
 
