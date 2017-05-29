@@ -123,8 +123,8 @@
         \item \textbf{Horloges}: physiques, logiques, hybrides\cite{lamport1978time,kulkarni2014logical}.
         \item \textbf{Synchronisation d'horloge}: NTP, PTP\cite{mills1991internet,peng2009research}\dots
         \item \textbf{Serveurs de son}: NetJack\cite{carot2009netjack}\dots
-        \item \textbf{Synchronisation de tempo}: Ableton Link, Oscthulhu, Global Metronome.\cite{oda2016global}\dots
-        \item \textbf{Improvisation}: eJamming\cite{carot2007networked}\dots
+        \item \textbf{Synchronisation de tempo}: Ableton Link, Global Metronome\cite{oda2016global}\dots
+        \item \textbf{Improvisation}: eJamming\cite{mills2010dislocated}\dots
         \item \textbf{Écriture répartie}: OhmStudio, Kiwi\dots
     \end{itemize}
 \end{frame}
@@ -164,7 +164,7 @@
 \begin{itemize}
     \item Séparation de l'écoulement du temps et de l'exécution des contenus.
     ~\\ { \normalsize \textit{Problème: dans i-score, le temps est un contenu!} }
-    \item Annotations de répartition fournies par le compositeur.
+    \item Annotations de répartition indépendantes des machines fournies par le compositeur.
 \end{itemize}
 \end{frame}
 
@@ -192,16 +192,6 @@
 \end{frame}
 
 \section{Synchronisation des interactions}
-\begin{frame}
-\frametitle{Interactions possibles à l'exécution}
-\Large
-\begin{itemize}
-	\item<1> Points d'interaction
-	\item<2> Conditions
-	\item<3> Contrôle de la vitesse d'exécution 
-\end{itemize}
-\end{frame}
-
 
 \begin{frame}
 \frametitle{Exécution libre}
@@ -253,9 +243,30 @@
 \end{frame}
 \begin{frame}
 \frametitle{Exécution mixte}
+
+\begin{figure}
+    \centering
+    \begin{tikzpicture}
+    \input{scenarios/mixte1.tex}
+    \end{tikzpicture}
+    \caption{Notation}
+\end{figure}
+\begin{figure}
+\centering
+\begin{tikzpicture}
+\input{scenarios/mixte3.tex}
+\end{tikzpicture}
+\caption{Groupe de la branche supérieure}
+\end{figure}
+\begin{figure}
+\centering
+\begin{tikzpicture}
+\input{scenarios/mixte2.tex}
+\end{tikzpicture}
+\caption{Groupe de la branche inférieure}
+\end{figure}
 \end{frame}
 
-\subsection{Synchronisation}
 \begin{frame}
 \frametitle{Synchronisation}
 \Large
@@ -279,6 +290,7 @@ Aspects à considérer :
 
 \end{frame}
 
+\subsection{Compensation de latence}
 \begin{frame}
 \frametitle{Compensation de latence}
 \begin{figure}
@@ -297,6 +309,7 @@ Aspects à considérer :
 \end{figure}
 \end{frame}
 
+\subsection{Ordonnancement}
 \begin{frame}
 \frametitle{Ordonnancement}
 \centering
@@ -344,7 +357,7 @@ Aspects à considérer :
 \frametitle{Embarquement d'i-score}
 Actuellement : 
 \begin{itemize}
-    \item Objet PureData: objet \lstinline|[i-score]|.
+    \item Objet PureData: objet \lstinline|[i-score]|. Max: à venir.
     \item API QML:
     \begin{lstlisting}
 Item {
@@ -369,15 +382,11 @@ Démonstration
 \begin{frame}
     \frametitle{Conclusion}  
     \Large
-    \begin{itemize}
-        \item<1> Mécanisme de répartition des partitions écrites avec i-score.
-    \end{itemize}
-
-    Objectifs:
+    Objectifs restants:
     \begin{itemize}
         \item<1> À court terme : permettre à une machine de rejoindre une exécution en cours de route.
         \item<2> À long terme : édition répartie intégrée dans la boucle d'interaction.
-        \item<3> Intégration avec Ableton Link pour une précision plus élevée pour des scénarios audio.
+        \item<3> Intégration avec Ableton Link pour une précision plus élevée pour des scénarios audio ?
     \end{itemize}
 \end{frame}
 
